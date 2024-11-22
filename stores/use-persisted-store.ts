@@ -8,7 +8,13 @@ export const usePersistedStore = <T, F>(
   const [data, setData] = useState<F>();
 
   if (callback.toString().includes("bears")) {
-    console.info(`result=${result} data=${data}`);
+    if (typeof window === "undefined") {
+      console.log("server");
+      console.info(`result=${result} data=${data}`);
+    } else {
+      console.log("client");
+      console.info(`result=${result} data=${data}`);
+    }
     // console.info(
     //   `orderProducts.length orderストア内の元データ=${result?.length} 描画データ=${data?.length}`
     // );
